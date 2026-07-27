@@ -163,6 +163,10 @@ serving `viparse.trizenx.com`. DNS for `trizenx.com` is managed at Cloudflare,
 not Vercel, so the subdomain is a `CNAME` record there pointing at
 `cname.vercel-dns.com` (DNS-only, proxy off).
 
+The project is connected to `TrizenX/viparse-web`, so pushing to `main`
+deploys to production and any other branch or PR gets a preview URL. Manual
+deploys from a working copy:
+
 ```bash
 vercel deploy --prod    # production
 vercel deploy           # preview URL
