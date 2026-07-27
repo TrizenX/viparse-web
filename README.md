@@ -1,6 +1,6 @@
 # viparse — landing page
 
-The marketing site for [**viparse**](https://github.com/minhtridinh-kayden/viparse),
+The marketing site for [**viparse**](https://github.com/TrizenX/viparse),
 a Python library that turns legacy Vietnamese documents (TCVN3 / VNI / VISCII
 fonts, scanned PDFs, old `.doc`/`.xls`) into clean Unicode NFC text for RAG
 pipelines.
