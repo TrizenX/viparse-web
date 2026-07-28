@@ -15,7 +15,7 @@ export const siteConfig = {
     docs: "https://github.com/TrizenX/viparse/tree/main/docs",
     pypi: "https://pypi.org/project/viparse/",
     releases: "https://github.com/TrizenX/viparse/releases",
-    email: "mailto:hello@viparse.dev",
+    email: "mailto:hello@trizenx.com",
   },
 } as const
 
