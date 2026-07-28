@@ -6,7 +6,10 @@ export const siteConfig = {
     "viparse turns legacy Vietnamese files — TCVN3/VNI/VISCII fonts, scanned PDFs, old .doc/.xls — into clean Unicode NFC Markdown or JSON. One function call, ready for your vector DB.",
   // Tracks requires-python in the library's pyproject.toml.
   heroBadge: "Open source · MIT · Python 3.11+",
-  url: "https://viparse.dev",
+  // The canonical origin. Everything SEO-facing derives from it — metadataBase,
+  // og:url, the canonical link, robots.txt and the sitemap — so it must be the
+  // domain the site is actually served from.
+  url: "https://viparse.trizenx.com",
   links: {
     github: "https://github.com/TrizenX/viparse",
     docs: "https://github.com/TrizenX/viparse/tree/main/docs",

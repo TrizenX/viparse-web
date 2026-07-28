@@ -3,6 +3,7 @@ import { JetBrains_Mono } from "next/font/google"
 import { GeistMono } from "geist/font/mono"
 import { GeistSans } from "geist/font/sans"
 
+import { StructuredData } from "@/components/structured-data"
 import { ThemeProvider } from "@/components/theme-provider"
 import { siteConfig } from "@/lib/site"
 
@@ -26,6 +27,13 @@ export const metadata: Metadata = {
     template: `%s — ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  applicationName: siteConfig.name,
+  alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
   keywords: [
     "vietnamese",
     "tcvn3",
@@ -63,6 +71,7 @@ export default function RootLayout({
       className={`${GeistSans.variable} ${GeistMono.variable} ${legacyMono.variable} h-full`}
     >
       <body className="flex min-h-full flex-col">
+        <StructuredData />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
