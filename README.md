@@ -8,8 +8,8 @@ pipelines.
 **Live:** https://viparse.trizenx.com
 
 This repo is only the website — it contains no parsing code. It is a port of a
-standalone HTML prototype (kept at `reference/viparse-landing-standalone.html`)
-to Next.js 16 App Router, Tailwind CSS v4 and shadcn/ui.
+standalone HTML prototype to Next.js 16 App Router, Tailwind CSS v4 and
+shadcn/ui.
 
 ---
 
