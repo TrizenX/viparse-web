@@ -4,6 +4,8 @@ export const siteConfig = {
   tagline: "Vietnamese documents, finally readable by your RAG stack.",
   description:
     "viparse turns legacy Vietnamese files — TCVN3/VNI/VISCII fonts, scanned PDFs, old .doc/.xls — into clean Unicode NFC Markdown or JSON. One function call, ready for your vector DB.",
+  // Tracks requires-python in the library's pyproject.toml.
+  heroBadge: "Open source · MIT · Python 3.11+",
   url: "https://viparse.dev",
   links: {
     github: "https://github.com/TrizenX/viparse",

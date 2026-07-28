@@ -18,7 +18,7 @@ export function Hero() {
           variant="outline"
           className="h-auto justify-self-start rounded-full px-3 py-[5px] font-mono text-[11.5px] font-normal text-muted-foreground"
         >
-          Open source · MIT · Python 3.10+
+          {siteConfig.heroBadge}
         </Badge>
 
         <h1 className="text-[clamp(30px,5.2vw,46px)] leading-[1.06] font-semibold tracking-[-0.035em] text-balance">
