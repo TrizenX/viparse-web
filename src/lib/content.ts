@@ -118,14 +118,43 @@ viparse doctor   # show available engines`,
 export const PLAYGROUND_STATUS = "Wiring up the Pyodide build — ships with v0.3."
 
 export const BENCHMARK_STATUS =
-  "A public corpus of legacy Vietnamese documents, scored on diacritic accuracy. Numbers, methodology and the corpus itself land with v0.2."
+  "48 Vietnamese government documents from 2001–2009, transcribed by hand and scored on diacritic accuracy. The corpus, the metric and the raw results are public."
 
+/**
+ * Measured, not estimated. Every figure comes from `TrizenX/viparse-corpus`, scored
+ * against hand-written transcripts of the same 48 documents.
+ *
+ * The baseline row is the one that needs no trust: it is what a loader that extracts
+ * the bytes correctly and does nothing about the encoding produces. There is no
+ * competitor in this table because no competitor has been run — putting names in a
+ * comparison nobody can check is worse than leaving it out.
+ */
 export const BENCHMARK_ROWS = [
-  { tool: "viparse" },
-  { tool: "unstructured" },
-  { tool: "llamaparse" },
-  { tool: "docling" },
+  {
+    tool: "No conversion",
+    note: "bytes extracted faithfully",
+    char: "0.787",
+    diacritic: "0.014",
+    syllable: "0.201",
+  },
+  {
+    tool: "viparse 0.1.14",
+    note: "48 documents, end-to-end",
+    char: "0.969",
+    diacritic: "0.977",
+    syllable: "0.975",
+  },
 ] as const
+
+/** Stated on the page, not buried in a repo. See METRIC.md and RESULTS.md. */
+export const BENCHMARK_CAVEAT =
+  "The 0.014 row is the honest headline: text that looks 79% intact carries 1.4% of the Vietnamese. viparse's own row is a weaker claim than it looks — the transcripts and the conversion tables were derived from the same corpus, so it measures self-consistency as much as correctness. Both numbers, the method and every document are published so the second one can be argued with."
+
+export const BENCHMARK_LINKS = {
+  corpus: "https://github.com/TrizenX/viparse-corpus",
+  results: "https://github.com/TrizenX/viparse-corpus/blob/main/RESULTS.md",
+  metric: "https://github.com/TrizenX/viparse-corpus/blob/main/METRIC.md",
+} as const
 
 export type FaqItem = {
   question: string
@@ -133,6 +162,11 @@ export type FaqItem = {
 }
 
 export const FAQ: FaqItem[] = [
+  {
+    question: "How accurate is it, really?",
+    answer:
+      "0.977 diacritic accuracy over 48 Vietnamese government documents from 2001-2009, against hand-written transcripts. A loader that extracts the bytes and ignores the encoding scores 0.014 on the same set. The corpus, the metric and the raw results are public, including the ways the number is weaker than it looks.",
+  },
   {
     question: "Is it free?",
     answer:
