@@ -26,6 +26,13 @@ export function StructuredData() {
       license: "https://opensource.org/licenses/MIT",
       codeRepository: siteConfig.links.github,
       downloadUrl: siteConfig.links.pypi,
+      author: {
+        "@type": "Person",
+        "@id": siteConfig.author.id,
+        name: siteConfig.author.name,
+        alternateName: siteConfig.author.alternateName,
+        url: siteConfig.author.url,
+      },
       offers: {
         "@type": "Offer",
         price: "0",

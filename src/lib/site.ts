@@ -10,6 +10,14 @@ export const siteConfig = {
   // og:url, the canonical link, robots.txt and the sitemap — so it must be the
   // domain the site is actually served from.
   url: "https://viparse.trizenx.com",
+  // The portfolio publishes the Person node this author reference points at;
+  // both sites must name the same @id or the graphs stay disconnected.
+  author: {
+    name: "Đinh Minh Trí",
+    alternateName: "Kayden",
+    id: "https://www.trizenx.com/#person",
+    url: "https://www.trizenx.com",
+  },
   links: {
     github: "https://github.com/TrizenX/viparse",
     docs: "https://github.com/TrizenX/viparse/tree/main/docs",
