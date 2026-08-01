@@ -15,8 +15,8 @@ export const siteConfig = {
   author: {
     name: "Đinh Minh Trí",
     alternateName: "Kayden",
-    id: "https://www.trizenx.com/#person",
-    url: "https://www.trizenx.com",
+    id: "https://portfolio.trizenx.com/#person",
+    url: "https://portfolio.trizenx.com",
   },
   links: {
     github: "https://github.com/TrizenX/viparse",
