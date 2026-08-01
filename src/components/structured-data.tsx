@@ -1,5 +1,5 @@
 import { FAQ } from "@/lib/content"
-import { siteConfig } from "@/lib/site"
+import { getVersion, siteConfig } from "@/lib/site"
 
 /**
  * JSON-LD for the landing page.
@@ -11,7 +11,9 @@ import { siteConfig } from "@/lib/site"
  *   text to be visible on the page, which it is (the accordion only collapses
  *   it, it stays in the DOM).
  */
-export function StructuredData() {
+export async function StructuredData() {
+  const version = await getVersion()
+
   const graph = [
     {
       "@type": "SoftwareApplication",
@@ -21,7 +23,7 @@ export function StructuredData() {
       url: siteConfig.url,
       applicationCategory: "DeveloperApplication",
       operatingSystem: "Linux, macOS, Windows",
-      softwareVersion: siteConfig.version.replace(/^v/, ""),
+      softwareVersion: version.replace(/^v/, ""),
       programmingLanguage: "Python",
       license: "https://opensource.org/licenses/MIT",
       codeRepository: siteConfig.links.github,

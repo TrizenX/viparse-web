@@ -5,9 +5,11 @@ import { MobileNav } from "@/components/mobile-nav"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { navLinks, siteConfig } from "@/lib/site"
+import { getVersion, navLinks, siteConfig } from "@/lib/site"
 
-export function SiteHeader() {
+export async function SiteHeader() {
+  const version = await getVersion()
+
   return (
     <header className="sticky top-0 z-50 border-b bg-[color-mix(in_srgb,var(--background)_82%,transparent)] backdrop-blur-[10px]">
       <nav className="mx-auto flex h-14 max-w-[1100px] items-center justify-between gap-6 px-6">
@@ -59,11 +61,11 @@ export function SiteHeader() {
             className="hidden items-center gap-1.5 rounded-md border px-2 py-1 font-mono text-[11.5px] leading-none text-muted-foreground transition-colors hover:border-foreground hover:text-foreground sm:inline-flex"
           >
             <span>PyPI</span>
-            <span className="font-medium text-brand">{siteConfig.version}</span>
+            <span className="font-medium text-brand">{version}</span>
           </a>
 
           <ThemeToggle />
-          <MobileNav />
+          <MobileNav version={version} />
         </div>
       </nav>
     </header>

@@ -14,7 +14,7 @@ import {
 import { navLinks, siteConfig } from "@/lib/site"
 
 /** Below `sm` the nav links and the PyPI chip don't fit the 56px bar. */
-export function MobileNav() {
+export function MobileNav({ version }: { version: string }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="sm:hidden">
@@ -41,7 +41,7 @@ export function MobileNav() {
           <a href={siteConfig.links.pypi} target="_blank" rel="noopener">
             <span className="font-mono text-xs">PyPI</span>
             <span className="ml-auto font-mono text-xs text-brand">
-              {siteConfig.version}
+              {version}
             </span>
           </a>
         </DropdownMenuItem>

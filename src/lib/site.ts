@@ -1,6 +1,9 @@
 export const siteConfig = {
   name: "viparse",
-  version: "v0.1.5",
+  // Fallback only. The live version comes from PyPI via getVersion() below — this
+  // string was already three releases stale (site said v0.1.5 while PyPI shipped
+  // 0.1.7), which is what a hand-maintained copy of someone else's number does.
+  version: "v0.1.8",
   tagline: "Vietnamese documents, finally readable by your RAG stack.",
   description:
     "viparse turns legacy Vietnamese files — TCVN3/VNI/VISCII fonts, scanned PDFs, old .doc/.xls — into clean Unicode NFC Markdown or JSON. One function call, ready for your vector DB.",
@@ -32,3 +35,28 @@ export const navLinks = [
   { label: "Playground", href: "#playground", external: false },
   { label: "Benchmark", href: "#benchmark", external: false },
 ] as const
+
+/**
+ * The published version, read from PyPI at build time and refreshed hourly.
+ *
+ * A version number maintained by hand in two places drifts, and this one did:
+ * the site advertised v0.1.5 through three releases. Fetching it makes the
+ * question "is this current?" unanswerable-by-being-wrong.
+ *
+ * Revalidation matters because the site only rebuilds when this repo changes,
+ * and a library release does not touch it.
+ */
+export async function getVersion(): Promise<string> {
+  try {
+    const res = await fetch("https://pypi.org/pypi/viparse/json", {
+      next: { revalidate: 3600 },
+    })
+    if (!res.ok) return siteConfig.version
+    const data = (await res.json()) as { info?: { version?: string } }
+    const version = data.info?.version
+    return version ? `v${version}` : siteConfig.version
+  } catch {
+    // Never fail the page over a version badge.
+    return siteConfig.version
+  }
+}
