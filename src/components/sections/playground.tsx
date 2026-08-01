@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import { PLAYGROUND_STATUS } from "@/lib/content"
 
 export function Playground() {
   return (
@@ -61,7 +62,7 @@ export function Playground() {
               Convert
             </Button>
             <span className="text-[12.5px] text-muted-foreground">
-              Wiring up the Pyodide build — ships with v0.2.
+              {PLAYGROUND_STATUS}
             </span>
           </div>
         </CardContent>

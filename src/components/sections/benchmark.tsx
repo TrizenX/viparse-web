@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { BENCHMARK_ROWS } from "@/lib/content"
+import { BENCHMARK_ROWS, BENCHMARK_STATUS } from "@/lib/content"
 
 const columns = ["Tool", "Diacritic accuracy", "Formats", "Speed"]
 
@@ -19,7 +19,7 @@ export function Benchmark() {
         eyebrow="Benchmark"
         badge={<ComingSoonBadge />}
         title="Measured on real broken files."
-        description="A public corpus of real-world legacy documents, scored on diacritic accuracy against Unstructured, LlamaParse and docling. Numbers coming with v0.2."
+        description={BENCHMARK_STATUS}
         className="mb-6"
       />
 

@@ -110,6 +110,16 @@ viparse doctor   # show available engines`,
   },
 ]
 
+/**
+ * Copy for the two unshipped sections. Kept here so a slipped milestone is a
+ * one-line edit rather than a hunt through components — and so the version a
+ * feature is promised against is stated in exactly one place.
+ */
+export const PLAYGROUND_STATUS = "Wiring up the Pyodide build — ships with v0.3."
+
+export const BENCHMARK_STATUS =
+  "A public corpus of legacy Vietnamese documents, scored on diacritic accuracy. Numbers, methodology and the corpus itself land with v0.2."
+
 export const BENCHMARK_ROWS = [
   { tool: "viparse" },
   { tool: "unstructured" },
