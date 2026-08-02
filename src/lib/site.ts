@@ -3,7 +3,7 @@ export const siteConfig = {
   // Fallback only. The live version comes from PyPI via getVersion() below — this
   // string was already three releases stale (site said v0.1.5 while PyPI shipped
   // 0.1.7), which is what a hand-maintained copy of someone else's number does.
-  version: "v0.1.18",
+  version: "v0.1.19",
   tagline: "Vietnamese documents, finally readable by your RAG stack.",
   description:
     "viparse turns legacy Vietnamese files — TCVN3/VNI/VISCII fonts, scanned PDFs, old .doc/.xls — into clean Unicode NFC Markdown or JSON. One function call, ready for your vector DB.",
