@@ -138,10 +138,10 @@ export const BENCHMARK_ROWS = [
     syllable: "0.232",
   },
   {
-    tool: "viparse 0.1.20",
+    tool: "viparse 0.1.21",
     note: "93 documents, end-to-end",
-    char: "0.977",
-    diacritic: "0.980",
+    char: "0.978",
+    diacritic: "0.983",
     syllable: "0.979",
   },
 ] as const
@@ -165,7 +165,7 @@ export const FAQ: FaqItem[] = [
   {
     question: "How accurate is it, really?",
     answer:
-      "0.980 diacritic accuracy over 93 Vietnamese government documents from 1998-2009 — Word, RTF, PDF, Excel and PowerPoint — against hand-written transcripts. A loader that extracts the bytes and ignores the encoding scores 0.019 on the same set. The corpus, the metric and the raw results are public, including the ways the number is weaker than it looks.",
+      "0.983 diacritic accuracy over 93 Vietnamese government documents from 1998-2009 — Word, RTF, PDF, Excel and PowerPoint — against hand-written transcripts. A loader that extracts the bytes and ignores the encoding scores 0.019 on the same set. The corpus, the metric and the raw results are public, including the ways the number is weaker than it looks.",
   },
   {
     question: "Is it free?",
