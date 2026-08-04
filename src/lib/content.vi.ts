@@ -68,7 +68,7 @@ export const VI_FEATURES: Feature[] = [
   },
   {
     title: "Mọi định dạng",
-    body: "DOCX, XLSX, PDF, PDF scan (OCR), RTF, và .doc/.xls/.ppt đời cũ.",
+    body: "DOCX, XLSX, PDF, RTF, .doc/.xls/.ppt đời cũ — thêm bản scan và file ảnh qua OCR.",
     icon: File as LucideIcon,
   },
   {
@@ -160,9 +160,9 @@ export const VI_FAQ: FaqItem[] = [
       "Unikey chuyển mã trên đoạn văn bản bạn dán vào. viparse làm cùng việc đó nhưng chạy thẳng trên file — mở .doc, .xls, .ppt đời cũ, RTF, PDF — giữ nguyên tiêu đề và bảng biểu, tự nhận bảng mã theo từng đoạn nên file trộn nhiều bảng mã vẫn ra đúng, và gọi được từ trong code hay từ AI agent.",
   },
   {
-    question: "PDF scan thì sao?",
+    question: "Bản scan và file ảnh thì sao?",
     answer:
-      "Cài viparse[ocr] (cần Tesseract) để dùng OCR có nhận dấu tiếng Việt.",
+      "viparse[ocr] đọc được PDF scan và file ảnh — .png, .jpg, .tif, kể cả TIFF nhiều trang — bằng mô hình tiếng Việt của Tesseract. Nói thẳng: đây là phần duy nhất của viparse không có con số nào chống lưng. Mọi test OCR đều mock Tesseract, không có tài liệu scan nào trong cả hai benchmark đã công bố, và chưa từng có con số độ chính xác OCR nào. Phần code đã được rà, chưa được kiểm chứng; mọi thứ khác trên trang này đều đã được đo.",
   },
   {
     question: "Ai làm?",

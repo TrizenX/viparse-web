@@ -58,7 +58,7 @@ export const FEATURES: Feature[] = [
   },
   {
     title: "Every format",
-    body: "DOCX, XLSX, PDF, scanned PDF (OCR), RTF, legacy .doc/.xls.",
+    body: "DOCX, XLSX, PDF, RTF, legacy .doc/.xls/.ppt — plus scans and page images via OCR.",
     icon: File,
   },
   {
@@ -215,8 +215,9 @@ export const FAQ: FaqItem[] = [
       "No. Detection runs per run; Unicode runs pass through byte-identical.",
   },
   {
-    question: "What about scanned PDFs?",
-    answer: "Install viparse[ocr] (Tesseract) for diacritic-aware OCR.",
+    question: "What about scans and image files?",
+    answer:
+      "viparse[ocr] reads a scanned PDF and a page image — .png, .jpg, .tif, including multi-page TIFF — with Tesseract's Vietnamese model. Said plainly: this is the one part of viparse with no number behind it. Every OCR test mocks Tesseract, no scanned document is in either published benchmark, and no OCR accuracy figure has ever been taken. The adapter is reviewed, not verified; everything else on this page is measured.",
   },
   {
     question: "Who's behind it?",
