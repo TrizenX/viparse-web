@@ -28,7 +28,10 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    languages: { "en-US": "/", "vi-VN": "/vi", "x-default": "/" },
+  },
   robots: {
     index: true,
     follow: true,

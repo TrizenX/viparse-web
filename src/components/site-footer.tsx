@@ -1,4 +1,6 @@
-import { siteConfig } from "@/lib/site"
+import Link from "next/link"
+
+import { languages, siteConfig, type Lang } from "@/lib/site"
 
 const footerLinks = [
   { label: "GitHub", href: siteConfig.links.github, external: true },
@@ -7,7 +9,9 @@ const footerLinks = [
   { label: "Contact", href: siteConfig.links.email, external: false },
 ]
 
-export function SiteFooter() {
+export function SiteFooter({ lang = "en" }: { lang?: Lang } = {}) {
+  const other = languages[lang]
+
   return (
     <footer className="border-t">
       <div className="mx-auto flex max-w-[1100px] flex-wrap items-center justify-between gap-4 px-6 pt-8 pb-10">
@@ -28,6 +32,13 @@ export function SiteFooter() {
               {link.label}
             </a>
           ))}
+          <Link
+            href={other.href}
+            hrefLang={other.hrefLang}
+            className="text-[12.5px] text-muted-foreground transition-colors hover:text-brand"
+          >
+            {other.label}
+          </Link>
           <span className="text-[12.5px] text-muted-foreground">
             Made in Vietnam 🇻🇳
           </span>

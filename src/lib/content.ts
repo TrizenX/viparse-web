@@ -129,11 +129,16 @@ export const PLAYGROUND_SAMPLES = [
 ] as const
 
 export const BENCHMARK_STATUS =
-  "93 Vietnamese government documents from 1998–2009 — Word, RTF, PDF, Excel and PowerPoint — transcribed by hand and scored on diacritic accuracy. The corpus, the metric and the raw results are public."
+  "96 Vietnamese government documents from 2002–2009 — Word, Excel, RTF, PDF and PowerPoint — transcribed by hand and scored on diacritic accuracy. The corpus, the metric, the raw results and the command that regenerates them are public."
 
 /**
- * Measured, not estimated. Every figure comes from `TrizenX/viparse-corpus`, scored
- * against hand-written transcripts of the same 48 documents.
+ * Measured, not estimated. Both rows come from `TrizenX/viparse-corpus`, scored against
+ * hand-written transcripts of the same 96 documents.
+ *
+ * Same reader, same files, one flag apart — the baseline is viparse with conversion
+ * switched off. That was not true until 2026-08-04: the baseline had been scored on 93
+ * documents and viparse on 96, so the two rows were never strictly a comparison, and
+ * the figure quoted publicly came from a third file that belonged to neither release.
  *
  * The baseline row is the one that needs no trust: it is what a loader that extracts
  * the bytes correctly and does nothing about the encoding produces. There is no
@@ -144,22 +149,22 @@ export const BENCHMARK_ROWS = [
   {
     tool: "No conversion",
     note: "bytes extracted faithfully",
-    char: "0.797",
+    char: "0.772",
     diacritic: "0.019",
-    syllable: "0.232",
+    syllable: "0.223",
   },
   {
-    tool: "viparse 0.1.21",
-    note: "93 documents, end-to-end",
+    tool: "viparse 0.1.23",
+    note: "96 documents, end-to-end",
     char: "0.978",
-    diacritic: "0.983",
-    syllable: "0.979",
+    diacritic: "0.982",
+    syllable: "0.981",
   },
 ] as const
 
 /** Stated on the page, not buried in a repo. See METRIC.md and RESULTS.md. */
 export const BENCHMARK_CAVEAT =
-  "The 0.019 row is the honest headline: text that looks 80% intact carries 1.9% of the Vietnamese. viparse's own row is a weaker claim than it looks — the transcripts and the conversion tables were derived from the same corpus, so it measures self-consistency as much as correctness. Both numbers, the method and every document are published so the second one can be argued with."
+  "The 0.019 row is the honest headline: text that looks 77% intact carries 1.9% of the Vietnamese. viparse's own row is a weaker claim than it looks — the transcripts and the conversion tables were derived from the same corpus, so it measures self-consistency as much as correctness. Both numbers, the method, every document and the command that regenerates them are published so the second one can be argued with."
 
 export const BENCHMARK_LINKS = {
   corpus: "https://github.com/TrizenX/viparse-corpus",
@@ -176,7 +181,7 @@ export const FAQ: FaqItem[] = [
   {
     question: "How accurate is it, really?",
     answer:
-      "0.983 diacritic accuracy over 93 Vietnamese government documents from 1998-2009 — Word, RTF, PDF, Excel and PowerPoint — against hand-written transcripts. A loader that extracts the bytes and ignores the encoding scores 0.019 on the same set. The corpus, the metric and the raw results are public, including the ways the number is weaker than it looks.",
+      "0.982 diacritic accuracy over 96 Vietnamese government documents from 2002-2009 — Word, Excel, RTF, PDF and PowerPoint — against hand-written transcripts. The same reader with conversion switched off scores 0.019 on the same 96 files. The corpus, the metric, the raw results and the command that regenerates them are public, including the ways the number is weaker than it looks.",
   },
   {
     question: "Is it free?",

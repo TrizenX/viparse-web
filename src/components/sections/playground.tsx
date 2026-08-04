@@ -19,30 +19,83 @@ import { PLAYGROUND_SAMPLES, PLAYGROUND_STATUS } from "@/lib/content"
 
 type Mode = "auto" | Encoding
 
-/** What the result line says, and whether it reads as success. */
-function status(result: ConversionResult, mode: Mode): { text: string; muted: boolean } {
-  if (mode !== "auto") {
-    return { text: `Converted as ${mode}.`, muted: false }
-  }
-  switch (result.reason) {
-    case "converted":
-      return { text: `Detected ${result.encoding} and converted.`, muted: false }
-    case "not-vietnamese":
-      return {
-        text: "A legacy table fits these bytes, but the result is not Vietnamese — left alone.",
-        muted: true,
-      }
-    case "already-unicode":
-      return {
-        text: "No legacy encoding found. Text returned unchanged.",
-        muted: true,
-      }
-    default:
-      return { text: PLAYGROUND_STATUS, muted: true }
+/**
+ * Labels, so `/vi` can render this in Vietnamese without a second copy of the
+ * conversion logic. Two playgrounds would be two chances to disagree with the library.
+ *
+ * Plain strings with `{placeholders}` rather than functions: this is a client
+ * component, and a server page cannot hand a function across that boundary.
+ */
+export type PlaygroundCopy = {
+  eyebrow: string
+  title: string
+  description: string
+  tryLabel: string
+  inputLabel: string
+  outputLabel: string
+  /** Sample-button labels, keyed by the English label in PLAYGROUND_SAMPLES. */
+  sampleLabels?: Record<string, string>
+  /** `{version}` is substituted. */
+  note: string
+  status: {
+    /** `{encoding}` is substituted in both. */
+    forced: string
+    converted: string
+    notVietnamese: string
+    alreadyUnicode: string
   }
 }
 
-export function Playground() {
+const EN: PlaygroundCopy = {
+  eyebrow: "Playground",
+  title: "Try it in your browser.",
+  description:
+    "Paste garbled Vietnamese text, get clean Unicode back. It runs in the page — nothing is uploaded, and it works offline once loaded.",
+  tryLabel: "Try",
+  inputLabel: "Input",
+  outputLabel: "Output",
+  note: "The conversion tables and the detection thresholds here are generated from viparse {version} itself, so they cannot drift from the library. What runs in the page is the text path only — the .doc, PDF and spreadsheet engines need a file and are most of what `pip install viparse` gives you.",
+  status: {
+    forced: "Converted as {encoding}.",
+    converted: "Detected {encoding} and converted.",
+    notVietnamese:
+      "A legacy table fits these bytes, but the result is not Vietnamese — left alone.",
+    alreadyUnicode: "No legacy encoding found. Text returned unchanged.",
+  },
+}
+
+/** What the result line says, and whether it reads as success. */
+function status(
+  result: ConversionResult,
+  mode: Mode,
+  copy: PlaygroundCopy,
+  idle: string,
+): { text: string; muted: boolean } {
+  if (mode !== "auto") {
+    return { text: copy.status.forced.replace("{encoding}", mode), muted: false }
+  }
+  switch (result.reason) {
+    case "converted":
+      return {
+        text: copy.status.converted.replace("{encoding}", String(result.encoding)),
+        muted: false,
+      }
+    case "not-vietnamese":
+      return { text: copy.status.notVietnamese, muted: true }
+    case "already-unicode":
+      return { text: copy.status.alreadyUnicode, muted: true }
+    default:
+      return { text: idle, muted: true }
+  }
+}
+
+export function Playground({
+  copy = EN,
+  idleStatus = PLAYGROUND_STATUS,
+}: {
+  copy?: PlaygroundCopy
+  idleStatus?: string
+} = {}) {
   const [input, setInput] = useState("")
   const [mode, setMode] = useState<Mode>("auto")
 
@@ -53,14 +106,14 @@ export function Playground() {
         : { text: convert(input, mode), encoding: mode, reason: "converted" },
     [input, mode],
   )
-  const { text: statusText, muted } = status(result, mode)
+  const { text: statusText, muted } = status(result, mode, copy, idleStatus)
 
   return (
     <Section id="playground">
       <SectionHeader
-        eyebrow="Playground"
-        title="Try it in your browser."
-        description="Paste garbled Vietnamese text, get clean Unicode back. It runs in the page — nothing is uploaded, and it works offline once loaded."
+        eyebrow={copy.eyebrow}
+        title={copy.title}
+        description={copy.description}
         className="mb-6"
       />
 
@@ -68,7 +121,7 @@ export function Playground() {
         <CardContent className="grid gap-4">
           <div className="flex flex-wrap items-center gap-1.5">
             <span className="mr-1 font-mono text-[11px] tracking-[0.1em] text-muted-foreground uppercase">
-              Try
+              {copy.tryLabel}
             </span>
             {PLAYGROUND_SAMPLES.map((sample) => (
               <Button
@@ -78,7 +131,7 @@ export function Playground() {
                 onClick={() => setInput(sample.text)}
                 className="h-7 bg-transparent px-2.5 font-mono text-[12px] font-normal"
               >
-                {sample.label}
+                {copy.sampleLabels?.[sample.label] ?? sample.label}
               </Button>
             ))}
           </div>
@@ -89,7 +142,7 @@ export function Playground() {
                 htmlFor="pg-in"
                 className="font-mono text-[11px] tracking-[0.1em] text-muted-foreground uppercase"
               >
-                Input
+                {copy.inputLabel}
               </Label>
               <Textarea
                 id="pg-in"
@@ -107,7 +160,7 @@ export function Playground() {
                 htmlFor="pg-out"
                 className="font-mono text-[11px] tracking-[0.1em] text-muted-foreground uppercase"
               >
-                Output
+                {copy.outputLabel}
               </Label>
               <Textarea
                 id="pg-out"
@@ -142,10 +195,7 @@ export function Playground() {
           </div>
 
           <p className="max-w-[68ch] text-[12.5px] leading-relaxed text-muted-foreground">
-            The conversion tables and the detection thresholds here are generated from
-            viparse {VIPARSE_VERSION} itself, so they cannot drift from the library. What
-            runs in the page is the text path only — the `.doc`, PDF and spreadsheet
-            engines need a file and are most of what `pip install viparse` gives you.
+            {copy.note.replace("{version}", VIPARSE_VERSION)}
           </p>
         </CardContent>
       </Card>

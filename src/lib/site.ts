@@ -30,11 +30,47 @@ export const siteConfig = {
   },
 } as const
 
-export const navLinks = [
-  { label: "Docs", href: siteConfig.links.docs, external: true },
-  { label: "Playground", href: "#playground", external: false },
-  { label: "Benchmark", href: "#benchmark", external: false },
-] as const
+/**
+ * The other language, from wherever you are.
+ *
+ * Two locales, so a lookup table would be longer than the thing it replaces. Named in
+ * its own language on purpose: someone who needs the Vietnamese page cannot necessarily
+ * read the word "Vietnamese".
+ */
+export const languages = {
+  en: { label: "Tiếng Việt", href: "/vi", hrefLang: "vi-VN" },
+  vi: { label: "English", href: "/", hrefLang: "en-US" },
+} as const
+
+export type Lang = keyof typeof languages
+
+// In-page links are bare hashes and are rendered as native anchors, not `Link`.
+// Both alternatives were tried and both are broken: a `Link` with a bare hash resolves
+// against the current URL, so following it while a hash was already present produced
+// "/vi#playground#playground" and a blank page; a `Link` with "/vi#playground" is a
+// same-route navigation that never scrolled at all. A plain <a> does the one thing
+// wanted here, in the browser, with no router involved.
+const nav = {
+  en: [
+    { label: "Docs", href: siteConfig.links.docs, external: true },
+    { label: "Playground", href: "#playground", external: false },
+    { label: "Benchmark", href: "#benchmark", external: false },
+  ],
+  vi: [
+    // Points at README.vi.md rather than docs/: someone reading the Vietnamese page
+    // should not land on an English page one click later.
+    { label: "Tài liệu", href: `${siteConfig.links.github}/blob/main/README.vi.md`, external: true },
+    { label: "Thử ngay", href: "#playground", external: false },
+    { label: "Đo đạc", href: "#benchmark", external: false },
+  ],
+} as const
+
+export function navFor(lang: Lang) {
+  return nav[lang]
+}
+
+/** The English nav, for callers that predate the language split. */
+export const navLinks = nav.en
 
 /**
  * The published version, read from PyPI at build time and refreshed hourly.
