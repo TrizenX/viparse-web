@@ -73,7 +73,7 @@ export const VI_FEATURES: Feature[] = [
   },
   {
     title: "Chia chunk cho RAG",
-    body: "Chunk bám theo mục, không bao giờ cắt đôi một dòng bảng.",
+    body: "Chunk bám theo mục, không cắt đôi dòng bảng, và lặp lại tiêu đề bảng.",
     icon: Rows3 as LucideIcon,
   },
   {
@@ -112,7 +112,7 @@ export const VI_BENCHMARK = {
   columns: ["Cách đọc", "Ký tự", "Dấu thanh", "Âm tiết"] as const,
   rowNotes: {
     "No conversion": "đọc byte trung thực, không chuyển mã",
-    "viparse 0.1.23": "96 tài liệu, từ file đến kết quả",
+    "viparse 0.1.24": "96 tài liệu, từ file đến kết quả",
   } as Record<string, string>,
   caveat:
     "Hàng 0.019 mới là con số đáng nói: văn bản trông còn nguyên 77% nhưng chỉ mang 1,9% lượng tiếng Việt. Hàng của viparse yếu hơn vẻ ngoài của nó — bản chép tay và bảng chuyển mã cùng rút ra từ một corpus, nên nó đo tính nhất quán với chính mình cũng nhiều như đo tính đúng. Cả hai con số, cách đo, từng tài liệu và câu lệnh tạo lại đều được công bố để có thể tranh luận lại.",
@@ -123,11 +123,26 @@ export const VI_BENCHMARK = {
   },
 } as const
 
+export const VI_STRUCTURE = {
+  heading: "Và với tài liệu Unicode bình thường",
+  columns: ["Tài liệu", "Thứ tự", "Đầy đủ", "Tiêu đề"] as const,
+  rowLabels: {
+    "PDF, one column": "PDF một cột",
+    "PDF, two columns": "PDF hai cột",
+  } as Record<string, string>,
+  note: "Không bao giờ mất chữ — cột đầy đủ bằng 1.000 ở mọi nơi. Cả hai chỗ hỏng đều là hỏng về sắp xếp, loại khó phát hiện hơn hẳn. PDF không có tiêu đề, nên mọi chunk từ PDF đều có section rỗng; và PDF nhiều cột bị đọc ngang trang chứ không đọc dọc theo cột. Lấy lại đúng cột nghĩa là phải phân tích bố cục, việc mà viparse cố ý không làm: với những file đó hãy dùng bộ đọc hiểu bố cục rồi đưa kết quả qua viparse.fix().",
+} as const
+
 export const VI_FAQ: FaqItem[] = [
   {
     question: "Chính xác đến đâu?",
     answer:
       "0.982 độ chính xác dấu thanh trên 96 văn bản nhà nước Việt Nam từ 2002–2009 — Word, Excel, RTF, PDF, PowerPoint — so với bản chép tay. Chính bộ đọc đó khi tắt phần chuyển bảng mã chỉ được 0.019 trên đúng 96 file ấy. Corpus, cách đo, kết quả thô và câu lệnh tạo lại đều công khai, kèm cả những chỗ con số này yếu hơn vẻ ngoài.",
+  },
+  {
+    question: "Với tài liệu Unicode bình thường thì sao?",
+    answer:
+      "Với DOCX, XLSX và PPTX thì tốt — thứ tự, độ đầy đủ và việc nhận tiêu đề đều đạt 1.000 trên benchmark cấu trúc đã công bố. Với PDF thì lấy được chữ và bảng nhưng không lấy được cấu trúc: không có tiêu đề, và PDF nhiều cột bị đọc ngang trang chứ không đọc dọc theo cột, nên đoạn 1 rồi đến đoạn 19. Cả hai trường hợp đều không mất chữ — chính điều đó khiến nó đáng được nói ra.",
   },
   {
     question: "Có mất phí không?",

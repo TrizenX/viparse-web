@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 
 import { Section, SectionHeader } from "@/components/section"
+import { StructureTable } from "@/components/sections/benchmark"
 import { Playground } from "@/components/sections/playground"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
@@ -33,6 +34,7 @@ import {
   VI_PROBLEM,
   VI_QUICKSTART,
   VI_STEPS,
+  VI_STRUCTURE,
 } from "@/lib/content.vi"
 import { siteConfig } from "@/lib/site"
 
@@ -324,6 +326,13 @@ function ViBenchmark() {
       <p className="mt-4 max-w-[68ch] text-[13.5px] leading-relaxed text-muted-foreground">
         {VI_BENCHMARK.caveat}
       </p>
+
+      <StructureTable
+        heading={VI_STRUCTURE.heading}
+        columns={VI_STRUCTURE.columns}
+        note={VI_STRUCTURE.note}
+        rowLabels={VI_STRUCTURE.rowLabels}
+      />
 
       <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5 text-[13px]">
         {(["corpus", "metric", "results"] as const).map((key) => (

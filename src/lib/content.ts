@@ -63,7 +63,7 @@ export const FEATURES: Feature[] = [
   },
   {
     title: "RAG-native chunking",
-    body: "Section-aware chunks that never split a table row.",
+    body: "Section-aware chunks that never split a table row, and repeat its header.",
     icon: Rows3,
   },
   {
@@ -154,7 +154,7 @@ export const BENCHMARK_ROWS = [
     syllable: "0.223",
   },
   {
-    tool: "viparse 0.1.23",
+    tool: "viparse 0.1.24",
     note: "96 documents, end-to-end",
     char: "0.978",
     diacritic: "0.982",
@@ -172,6 +172,22 @@ export const BENCHMARK_LINKS = {
   metric: "https://github.com/TrizenX/viparse-corpus/blob/main/METRIC.md",
 } as const
 
+/**
+ * What viparse does with ordinary Unicode documents — the other benchmark.
+ *
+ * Stated on the page rather than left to be discovered, because the failure it describes
+ * is invisible: nothing is dropped, so a multi-column PDF comes back complete, fluent and
+ * in the wrong order. Figures from `TrizenX/viparse-corpus/structure`.
+ */
+export const STRUCTURE_ROWS = [
+  { document: "DOCX · XLSX · PPTX", order: "1.000", completeness: "1.000", headings: "1.000" },
+  { document: "PDF, one column", order: "1.000", completeness: "1.000", headings: "0.000" },
+  { document: "PDF, two columns", order: "0.600", completeness: "1.000", headings: "0.000" },
+] as const
+
+export const STRUCTURE_NOTE =
+  "Nothing is ever lost — completeness is 1.000 everywhere. Both failures are failures of arrangement, which is the harder kind to notice. A PDF has no headings, so every chunk from one carries an empty section; and a multi-column PDF is read across the page rather than down the columns. Recovering columns means layout analysis, which viparse does not do: use a layout-aware loader for those and pass its output through viparse.fix()."
+
 export type FaqItem = {
   question: string
   answer: string
@@ -182,6 +198,11 @@ export const FAQ: FaqItem[] = [
     question: "How accurate is it, really?",
     answer:
       "0.982 diacritic accuracy over 96 Vietnamese government documents from 2002-2009 — Word, Excel, RTF, PDF and PowerPoint — against hand-written transcripts. The same reader with conversion switched off scores 0.019 on the same 96 files. The corpus, the metric, the raw results and the command that regenerates them are public, including the ways the number is weaker than it looks.",
+  },
+  {
+    question: "Does it work on ordinary Unicode documents, not just legacy ones?",
+    answer:
+      "On DOCX, XLSX and PPTX, yes — order, completeness and heading recovery all score 1.000 on the published structure benchmark. On PDF it recovers the text and the tables but not the structure: there are no headings, and a multi-column PDF is read across the page rather than down the columns, so paragraph 1 is followed by paragraph 19. Nothing is dropped either way, which is what makes it worth stating.",
   },
   {
     question: "Is it free?",
