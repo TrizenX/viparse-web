@@ -3,7 +3,7 @@
 // library cannot disagree about a mapping. Re-run: npm run gen:tables
 
 export const VIPARSE_DATA = {
-  "viparseVersion": "0.1.21",
+  "viparseVersion": "0.1.22",
   "charmaps": {
     "tcvn3": [
       [
