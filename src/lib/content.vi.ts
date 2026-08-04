@@ -162,7 +162,7 @@ export const VI_FAQ: FaqItem[] = [
   {
     question: "Bản scan và file ảnh thì sao?",
     answer:
-      "viparse[ocr] đọc được PDF scan và file ảnh — .png, .jpg, .tif, kể cả TIFF nhiều trang — bằng mô hình tiếng Việt của Tesseract. Đã đo: 0.990 độ chính xác dấu thanh trên trang kết xuất và 0.968 trên hai bản scan thật, so với 0.986 của đường chuyển bảng mã trên cùng bộ tài liệu. Hai bản scan là mức sàn cho các con số kết xuất, không phải một benchmark — cả hai đều là một trang, chép tay từ ảnh trước khi chạy OCR. Các con số 0.967 và 0.898 từng đăng ở đây đến từ một lỗi trong bộ chấm điểm của corpus và đã được rút lại.",
+      "viparse[ocr] đọc được PDF scan và file ảnh — .png, .jpg, .tif, kể cả TIFF nhiều trang — bằng mô hình tiếng Việt của Tesseract. Đã đo: 0.990 độ chính xác dấu thanh trên trang kết xuất và 0.973 trên ba bản scan thật, so với 0.986 của đường chuyển bảng mã trên cùng bộ tài liệu. Ba bản scan là mức sàn cho các con số kết xuất, không phải một benchmark — cả ba đều là một trang, chép tay từ ảnh trước khi chạy OCR, trong tổng số 25 bản scan đã thu; nút thắt là việc chép tay chứ không phải việc thu thập. Các con số 0.967 và 0.898 từng đăng ở đây đến từ một lỗi trong bộ chấm điểm của corpus và đã được rút lại.",
   },
   {
     question: "Ai làm?",

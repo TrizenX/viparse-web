@@ -217,7 +217,7 @@ export const FAQ: FaqItem[] = [
   {
     question: "What about scans and image files?",
     answer:
-      "viparse[ocr] reads a scanned PDF and a page image — .png, .jpg, .tif, including multi-page TIFF — with Tesseract's Vietnamese model. Measured: 0.990 diacritic accuracy on rendered pages and 0.968 on two real scans, against 0.986 for the conversion path on the same documents. Two real scans is a floor under the rendered figures, not a benchmark — both are single pages hand-transcribed from the image before OCR was run on them. Earlier figures of 0.967 and 0.898 published here came from a defect in the corpus scorer and are withdrawn.",
+      "viparse[ocr] reads a scanned PDF and a page image — .png, .jpg, .tif, including multi-page TIFF — with Tesseract's Vietnamese model. Measured: 0.990 diacritic accuracy on rendered pages and 0.973 on three real scans, against 0.986 for the conversion path on the same documents. Three real scans is a floor under the rendered figures, not a benchmark — all three are single pages hand-transcribed from the image before OCR was run on them, out of 25 scans collected; transcription, not collection, is the bottleneck. Earlier figures of 0.967 and 0.898 published here came from a defect in the corpus scorer and are withdrawn.",
   },
   {
     question: "Who's behind it?",
