@@ -7,6 +7,7 @@ const footerLinks = [
   { label: "PyPI", href: siteConfig.links.pypi, external: true },
   { label: "Changelog", href: siteConfig.links.releases, external: true },
   { label: "Contact", href: siteConfig.links.email, external: false },
+  { label: "TrizenX", href: siteConfig.links.studio, external: true },
 ]
 
 export function SiteFooter({ lang = "en" }: { lang?: Lang } = {}) {

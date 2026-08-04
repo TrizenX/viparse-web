@@ -27,6 +27,11 @@ export const siteConfig = {
     pypi: "https://pypi.org/project/viparse/",
     releases: "https://github.com/TrizenX/viparse/releases",
     email: "mailto:hello@trizenx.com",
+    // The studio index. viparse is one row on it, and until this existed the
+    // estate linked outward only: trizenx.com points here, nothing pointed back,
+    // so a reader who wanted to know who builds this had nowhere to click and a
+    // crawler had no path to the homepage except a sitemap.
+    studio: "https://trizenx.com",
   },
 } as const
 
