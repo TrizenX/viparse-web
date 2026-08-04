@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "gen:tables": "python3 scripts/generate-tables.py > src/lib/viparse-tables.generated.ts",
+    "check:tables": "python3 scripts/generate-tables.py | diff -q - src/lib/viparse-tables.generated.ts && echo 'tables in sync with the installed viparse'",
+    "smoke:convert": "tsx scripts/smoke.ts"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
@@ -30,6 +33,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.12",
     "tailwindcss": "^4",
+    "tsx": "^4.23.5",
     "typescript": "^5"
   }
 }

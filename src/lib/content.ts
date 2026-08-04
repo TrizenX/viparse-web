@@ -115,7 +115,18 @@ viparse doctor   # show available engines`,
  * one-line edit rather than a hunt through components — and so the version a
  * feature is promised against is stated in exactly one place.
  */
-export const PLAYGROUND_STATUS = "Wiring up the Pyodide build — ships with v0.3."
+export const PLAYGROUND_STATUS = "Paste something, or pick a sample."
+
+/**
+ * Real mojibake, so the first thing a visitor sees is the actual problem rather than a
+ * contrived one. Every string is quoted from a document in the corpus.
+ */
+export const PLAYGROUND_SAMPLES = [
+  { label: "TCVN3", text: "céng hßa x· héi chñ nghÜa viÖt nam\n§éc lËp - Tù do - H¹nh phóc\nQuyÕt ®Þnh cña Bé tr\u00adëng Bé Tµi chÝnh" },
+  { label: "VNI", text: "COÄNG HOØA XAÕ HOÄI CHUÛ NGHÓA VIEÄT NAM\nÑoäc laäp - Töï do - Haïnh phuùc\nCaên cöù Luaät Toå chöùc HÑND vaø UBND" },
+  { label: "Already Unicode", text: "Cộng hòa xã hội chủ nghĩa Việt Nam\nĐộc lập - Tự do - Hạnh phúc" },
+  { label: "Not Vietnamese", text: "Señor Muñoz vivía en la mañana con niños pequeños en España, la señora enseñaba español a los niños" },
+] as const
 
 export const BENCHMARK_STATUS =
   "93 Vietnamese government documents from 1998–2009 — Word, RTF, PDF, Excel and PowerPoint — transcribed by hand and scored on diacritic accuracy. The corpus, the metric and the raw results are public."
