@@ -112,10 +112,10 @@ export const VI_BENCHMARK = {
   columns: ["Cách đọc", "Ký tự", "Dấu thanh", "Âm tiết"] as const,
   rowNotes: {
     "No conversion": "đọc byte trung thực, không chuyển mã",
-    "viparse 0.1.24": "96 tài liệu, từ file đến kết quả",
+    "viparse 0.1.27": "96 tài liệu, từ file đến kết quả",
   } as Record<string, string>,
   caveat:
-    "Hàng 0.019 mới là con số đáng nói: văn bản trông còn nguyên 77% nhưng chỉ mang 1,9% lượng tiếng Việt. Hàng của viparse yếu hơn vẻ ngoài của nó — bản chép tay và bảng chuyển mã cùng rút ra từ một corpus, nên nó đo tính nhất quán với chính mình cũng nhiều như đo tính đúng. Cả hai con số, cách đo, từng tài liệu và câu lệnh tạo lại đều được công bố để có thể tranh luận lại.",
+    "Hàng 0.019 mới là con số đáng nói: văn bản trông còn nguyên 79% nhưng chỉ mang 1,9% lượng tiếng Việt. Hàng của viparse yếu hơn vẻ ngoài của nó — bản chép tay và bảng chuyển mã cùng rút ra từ một corpus, nên nó đo tính nhất quán với chính mình cũng nhiều như đo tính đúng. Cả hai con số, cách đo, từng tài liệu và câu lệnh tạo lại đều được công bố để có thể tranh luận lại.",
   links: {
     corpus: "Corpus",
     metric: "Cách chấm điểm",
@@ -137,7 +137,7 @@ export const VI_FAQ: FaqItem[] = [
   {
     question: "Chính xác đến đâu?",
     answer:
-      "0.982 độ chính xác dấu thanh trên 96 văn bản nhà nước Việt Nam từ 2002–2009 — Word, Excel, RTF, PDF, PowerPoint — so với bản chép tay. Chính bộ đọc đó khi tắt phần chuyển bảng mã chỉ được 0.019 trên đúng 96 file ấy. Corpus, cách đo, kết quả thô và câu lệnh tạo lại đều công khai, kèm cả những chỗ con số này yếu hơn vẻ ngoài.",
+      "0.986 độ chính xác dấu thanh trên 96 văn bản nhà nước Việt Nam từ 2002–2009 — Word, Excel, RTF, PDF, PowerPoint — so với bản chép tay. Chính bộ đọc đó khi tắt phần chuyển bảng mã chỉ được 0.019 trên đúng 96 file ấy. Corpus, cách đo, kết quả thô và câu lệnh tạo lại đều công khai, kèm cả những chỗ con số này yếu hơn vẻ ngoài.",
   },
   {
     question: "Với tài liệu Unicode bình thường thì sao?",
@@ -162,7 +162,7 @@ export const VI_FAQ: FaqItem[] = [
   {
     question: "Bản scan và file ảnh thì sao?",
     answer:
-      "viparse[ocr] đọc được PDF scan và file ảnh — .png, .jpg, .tif, kể cả TIFF nhiều trang — bằng mô hình tiếng Việt của Tesseract. Giờ đã đo, và đây là phần yếu nhất: 0.967 độ chính xác dấu thanh trên văn xuôi kết xuất sạch, 0.898 khi trang có nhiễu, so với 0.982 của đường chuyển bảng mã trên cùng bộ tài liệu. 0.967 là mức trần — trang kết xuất hoàn hảo, không lệch, không nhiễu, không vân giấy — và chưa có tài liệu tiếng Việt scan thật nào được đo. Lỗi gần như toàn bộ nằm ở dấu thanh, tức đúng thứ sản phẩm này sinh ra để giữ.",
+      "viparse[ocr] đọc được PDF scan và file ảnh — .png, .jpg, .tif, kể cả TIFF nhiều trang — bằng mô hình tiếng Việt của Tesseract. Đã đo: 0.990 độ chính xác dấu thanh trên trang kết xuất và 0.968 trên hai bản scan thật, so với 0.986 của đường chuyển bảng mã trên cùng bộ tài liệu. Hai bản scan là mức sàn cho các con số kết xuất, không phải một benchmark — cả hai đều là một trang, chép tay từ ảnh trước khi chạy OCR. Các con số 0.967 và 0.898 từng đăng ở đây đến từ một lỗi trong bộ chấm điểm của corpus và đã được rút lại.",
   },
   {
     question: "Ai làm?",

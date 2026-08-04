@@ -149,22 +149,22 @@ export const BENCHMARK_ROWS = [
   {
     tool: "No conversion",
     note: "bytes extracted faithfully",
-    char: "0.772",
+    char: "0.787",
     diacritic: "0.019",
-    syllable: "0.223",
+    syllable: "0.225",
   },
   {
-    tool: "viparse 0.1.24",
+    tool: "viparse 0.1.27",
     note: "96 documents, end-to-end",
-    char: "0.978",
-    diacritic: "0.982",
-    syllable: "0.981",
+    char: "0.982",
+    diacritic: "0.986",
+    syllable: "0.985",
   },
 ] as const
 
 /** Stated on the page, not buried in a repo. See METRIC.md and RESULTS.md. */
 export const BENCHMARK_CAVEAT =
-  "The 0.019 row is the honest headline: text that looks 77% intact carries 1.9% of the Vietnamese. viparse's own row is a weaker claim than it looks — the transcripts and the conversion tables were derived from the same corpus, so it measures self-consistency as much as correctness. Both numbers, the method, every document and the command that regenerates them are published so the second one can be argued with."
+  "The 0.019 row is the honest headline: text that looks 79% intact carries 1.9% of the Vietnamese. viparse's own row is a weaker claim than it looks — the transcripts and the conversion tables were derived from the same corpus, so it measures self-consistency as much as correctness. Both numbers, the method, every document and the command that regenerates them are published so the second one can be argued with."
 
 export const BENCHMARK_LINKS = {
   corpus: "https://github.com/TrizenX/viparse-corpus",
@@ -217,7 +217,7 @@ export const FAQ: FaqItem[] = [
   {
     question: "What about scans and image files?",
     answer:
-      "viparse[ocr] reads a scanned PDF and a page image — .png, .jpg, .tif, including multi-page TIFF — with Tesseract's Vietnamese model. It is measured now, and it is the weakest path here: 0.967 diacritic accuracy on cleanly rendered prose and 0.898 on degraded pages, against 0.982 for the conversion path on the same documents. 0.967 is a ceiling — a perfect render with no skew, noise or paper texture — and no real scanned Vietnamese document has been measured at all. The errors are almost entirely tone marks, which is exactly what the product exists to preserve.",
+      "viparse[ocr] reads a scanned PDF and a page image — .png, .jpg, .tif, including multi-page TIFF — with Tesseract's Vietnamese model. Measured: 0.990 diacritic accuracy on rendered pages and 0.968 on two real scans, against 0.986 for the conversion path on the same documents. Two real scans is a floor under the rendered figures, not a benchmark — both are single pages hand-transcribed from the image before OCR was run on them. Earlier figures of 0.967 and 0.898 published here came from a defect in the corpus scorer and are withdrawn.",
   },
   {
     question: "Who's behind it?",
