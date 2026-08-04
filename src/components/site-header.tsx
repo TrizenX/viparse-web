@@ -1,5 +1,6 @@
 import Link from "next/link"
 
+import { BrandMark } from "@/components/brand-mark"
 import { GitHubIcon } from "@/components/icons"
 import { MobileNav } from "@/components/mobile-nav"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -17,8 +18,9 @@ export async function SiteHeader({ lang = "en" }: { lang?: Lang } = {}) {
       <nav className="mx-auto flex h-14 max-w-[1100px] items-center justify-between gap-6 px-6">
         <Link
           href={lang === "vi" ? "/vi" : "/"}
-          className="font-mono text-[15px] font-semibold tracking-[-0.02em]"
+          className="inline-flex items-center gap-2.5 font-mono text-[15px] font-semibold tracking-[-0.02em]"
         >
+          <BrandMark className="text-brand" />
           {siteConfig.name}
         </Link>
 

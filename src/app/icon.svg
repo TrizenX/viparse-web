@@ -1,5 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <rect width="32" height="32" rx="7" fill="#059669"/>
-  <path d="M9 10.5 16 22l7-11.5" fill="none" stroke="#ffffff" stroke-width="4"
-        stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- The TrizenX rails, carrying viparse's idea: the left two are broken at
+       uneven points, the right two are whole. Legacy text arrives in the wrong
+       pieces and leaves in one.
+
+       Grammar shared with trizenx.com, adforge and Liftoff — rails 4 wide,
+       rx 2, at x = 3 / 10 / 17 / 24, spanning y = 4..28. Green is viparse's
+       rail on the parent mark. Must match src/components/brand-mark.tsx. -->
+  <g fill="#10b981">
+    <rect x="3" y="4" width="4" height="10" rx="2" />
+    <rect x="3" y="17" width="4" height="11" rx="2" />
+    <rect x="10" y="4" width="4" height="8" rx="2" />
+    <rect x="10" y="15" width="4" height="13" rx="2" />
+    <rect x="17" y="4" width="4" height="24" rx="2" />
+    <rect x="24" y="4" width="4" height="24" rx="2" />
+  </g>
 </svg>
