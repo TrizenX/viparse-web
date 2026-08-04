@@ -217,7 +217,7 @@ export const FAQ: FaqItem[] = [
   {
     question: "What about scans and image files?",
     answer:
-      "viparse[ocr] reads a scanned PDF and a page image — .png, .jpg, .tif, including multi-page TIFF — with Tesseract's Vietnamese model. Said plainly: this is the one part of viparse with no number behind it. Every OCR test mocks Tesseract, no scanned document is in either published benchmark, and no OCR accuracy figure has ever been taken. The adapter is reviewed, not verified; everything else on this page is measured.",
+      "viparse[ocr] reads a scanned PDF and a page image — .png, .jpg, .tif, including multi-page TIFF — with Tesseract's Vietnamese model. It is measured now, and it is the weakest path here: 0.967 diacritic accuracy on cleanly rendered prose and 0.898 on degraded pages, against 0.982 for the conversion path on the same documents. 0.967 is a ceiling — a perfect render with no skew, noise or paper texture — and no real scanned Vietnamese document has been measured at all. The errors are almost entirely tone marks, which is exactly what the product exists to preserve.",
   },
   {
     question: "Who's behind it?",
